@@ -1,11 +1,6 @@
 # test_frame_analyzer.py
 import unittest
 
-# ===== Import code under test =====
-# If your code is in a separate file (e.g., frame_analyzer.py),
-# replace the following with:
-# from frame_analyzer import merge_sort, FrameAnalyzer
-
 def merge_sort(arr:list[int]) -> list[int]:
     if len(arr) <= 1:
         return arr
