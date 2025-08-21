@@ -117,4 +117,4 @@ print(output_msg)
 ## Notes
 - Sorting is done **manually** using Merge Sort, not Python's built-in `sorted()`.
 - The analyzer can be extended to detect duplicate frames, out-of-order frames, or perform statistical analysis on gaps.
-- This implementation is for **educational purposes** to demonstrate recursion, sorting, and simple data analysis.
+- This implementation is to demonstrate recursion, sorting, and simple data analysis.
