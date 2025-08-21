@@ -48,8 +48,8 @@ class FrameAnalyzer:
             if i < len(sorted_frames) - 1 and sorted_frames[i+1] - sorted_frames[i] > 1:
                 gap_start = sorted_frames[i] # gap start indicator
                 gap_end = sorted_frames[i+1] # gap end indicator
-                gap_range = [gap_start, gap_end] # setting gap range
-                gap_size = gap_end - gap_start # calculating the gap size
+                gap_range = [gap_start+1, gap_end-1] # setting gap range
+                gap_size = self.calc_gap_size(gap_range) # calculating the gap size
 
                 self.report["gaps"].append(gap_range) # adding gap range to the report
                 self.report["missing_count"] += gap_size # increasing the missing counts
@@ -66,6 +66,10 @@ class FrameAnalyzer:
     def resort_frames_manually(self):
         return merge_sort(self.frames) #using merge sort algorithm
 
+    # calculate the gap size
+    def calc_gap_size(self, gap_range):
+        return gap_range[1] - gap_range[0] + 1
+
 
     # using magic function to resort the frames with no built-in function; much cleaner
     def __lt__(self, other):
@@ -73,7 +77,7 @@ class FrameAnalyzer:
 
 
 # main program
-frameAnalyzer = FrameAnalyzer([1, 2, 3, 5, 6, 10, 11, 16]) # initiate FrameAnalyzer instance
+frameAnalyzer = FrameAnalyzer([1, 2, 3, 5, 6, 10, 11, 16, 19]) # initiate FrameAnalyzer instance
 frameAnalyzer.find_missing_frames() #finding missing frames
 report = frameAnalyzer.get_report()
 

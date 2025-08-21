@@ -51,8 +51,10 @@ def merge_sort(arr: list[int]) -> list[int]:
 
 ```python
 class FrameAnalyzer:
-    def __init__(self, frames: list[int]):
-        self.frames = frames
+    # constructor definition passing frames list of integers
+    def __init__(self, frames:list[int]):
+        self.frames = frames #assiging frames
+        #initialize the frame analyzer report
         self.report = {
             "gaps": [],
             "longest_gap": [],
@@ -66,15 +68,17 @@ class FrameAnalyzer:
 
         longest_gap_size = 0
         for i in range(len(sorted_frames)):
+            # identifying the gap by comparing frame with the next frame
             if i < len(sorted_frames) - 1 and sorted_frames[i+1] - sorted_frames[i] > 1:
-                gap_start = sorted_frames[i]
-                gap_end = sorted_frames[i+1]
-                gap_range = [gap_start, gap_end]
-                gap_size = gap_end - gap_start
+                gap_start = sorted_frames[i] # gap start indicator
+                gap_end = sorted_frames[i+1] # gap end indicator
+                gap_range = [gap_start+1, gap_end-1] # setting gap range
+                gap_size = self.calc_gap_size(gap_range) # calculating the gap size
 
-                self.report["gaps"].append(gap_range)
-                self.report["missing_count"] += gap_size
+                self.report["gaps"].append(gap_range) # adding gap range to the report
+                self.report["missing_count"] += gap_size # increasing the missing counts
 
+                #finding the longest gap size
                 if gap_size > longest_gap_size:
                     longest_gap_size = gap_size
                     self.report["longest_gap"] = gap_range
@@ -82,8 +86,14 @@ class FrameAnalyzer:
     def get_report(self):
         return self.report
 
+    # resorting frames manually without O(n log(n)), so we can use it effectively
     def resort_frames_manually(self):
-        return merge_sort(self.frames)
+        return merge_sort(self.frames) #using merge sort algorithm
+
+    # calculate the gap size
+    def calc_gap_size(self, gap_range):
+        return gap_range[1] - gap_range[0] + 1
+
 
     # using magic function to resort the frames with no built-in function; much cleaner
     def __lt__(self, other):
@@ -108,7 +118,7 @@ print(output_msg)
 ### ✅ Output:
 ```
 ============================== FrameAnalyzer - Full Report ==============================
-{'gaps': [[3, 5], [6, 10], [11, 16]], 'longest_gap': [11, 16], 'missing_count': 11}
+{'gaps': [[4, 4], [7, 9], [12, 15]], 'longest_gap': [12, 15], 'missing_count': 8}
 =========================================================================================
 ```
 
