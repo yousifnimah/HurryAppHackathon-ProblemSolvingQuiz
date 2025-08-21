@@ -61,6 +61,7 @@ class FrameAnalyzer:
 
     def find_missing_frames(self):
         frames = self.frames
+        # sorted_frames = sorted(frames) --> we can use this or the below statement for sorting
         sorted_frames = self.resort_frames_manually()
 
         longest_gap_size = 0
@@ -84,6 +85,7 @@ class FrameAnalyzer:
     def resort_frames_manually(self):
         return merge_sort(self.frames)
 
+    # using magic function to resort the frames with no built-in function; much cleaner
     def __lt__(self, other):
         return self.frames >= other.frames
 ```
