@@ -1,3 +1,4 @@
+
 # sorting algorithm
 def merge_sort(arr:list[int]) -> list[int]:
     if len(arr) <= 1: # to stop recursive calls ends with one node
@@ -39,8 +40,8 @@ class FrameAnalyzer:
 
     def find_missing_frames(self):
         frames = self.frames
-        # sorted_frames = sorted(frames) --> we can use this or the below statement for sorting
-        sorted_frames = self.resort_frames_manually()
+        sorted_frames = sorted(frames) #much faster, but we can use this or the below statement for sorting.
+        # sorted_frames = self.resort_frames_manually()
 
         longest_gap_size = 0
         for i in range(len(sorted_frames)):
@@ -70,6 +71,10 @@ class FrameAnalyzer:
     def calc_gap_size(self, gap_range):
         return gap_range[1] - gap_range[0] + 1
 
+    def print_report(self):
+        app_name = " FrameAnalyzer - Full Report "
+        output_msg = f"{"=" * 30}{app_name}{"=" * 30}\n{self.report}\n{"=" * (60 + len(app_name))}"
+        print(output_msg)
 
     # using magic function to resort the frames with no built-in function; much cleaner
     def __lt__(self, other):
@@ -79,8 +84,4 @@ class FrameAnalyzer:
 # main program
 frameAnalyzer = FrameAnalyzer([1, 2, 3, 5, 6, 10, 11, 16]) # initiate FrameAnalyzer instance
 frameAnalyzer.find_missing_frames() #finding missing frames
-report = frameAnalyzer.get_report()
-
-app_name = " FrameAnalyzer - Full Report "
-output_msg = f"{"="* 30}{app_name}{"="*30}\n{report}\n{"="*(60+len(app_name))}"
-print(output_msg)
+frameAnalyzer.print_report()
