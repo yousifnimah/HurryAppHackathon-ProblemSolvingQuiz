@@ -77,7 +77,7 @@ class FrameAnalyzer:
 
 
 # main program
-frameAnalyzer = FrameAnalyzer([1, 2, 3, 5, 6, 10, 11, 16, 19]) # initiate FrameAnalyzer instance
+frameAnalyzer = FrameAnalyzer([1, 2, 3, 5, 6, 10, 11, 16]) # initiate FrameAnalyzer instance
 frameAnalyzer.find_missing_frames() #finding missing frames
 report = frameAnalyzer.get_report()
 
